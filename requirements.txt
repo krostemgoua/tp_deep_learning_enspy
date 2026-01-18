@@ -1,0 +1,2 @@
+flask
+keras>=3.0.0
