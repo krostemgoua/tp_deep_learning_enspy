@@ -2,65 +2,95 @@
 
 **Auteur :** SOLEFACK TEMGOUA JUDICAËL KROS  
 **Matricule :** 21P034  
-**Niveau :** 5ème Année - Génie Informatique  
+**Niveau :** 5ème Année - Génie Informatique
 
-Ce dépôt contient les travaux pratiques du module **Deep Learning Engineering**, avec une approche professionnelle intégrant l’entraînement de modèles, le suivi des expériences et le déploiement via API et Docker.
+Ce dépôt contient l'ensemble des travaux pratiques du module de Deep Learning Engineering.
+
+## 📂 Organisation du Dépôt
+
+Le projet est structuré par module pour une meilleure lisibilité :
+
+### 1️⃣ TP1 : De la Conception au Déploiement (`/TP1`)
+Contient la mise en place du pipeline MLOps de base.
+- **Dossier :** `TP1/`
+- **Contenu :** Entraînement Keras, API Flask, Dockerfile, Tests.
+- **Fichiers clés :** `train_model.py`, `app.py`, `Dockerfile`.
+
+### 2️⃣ TP2 : Improving Deep Neural Networks (`/TP2`)
+Contient les exercices d'optimisation et de diagnostic.
+- **Dossier :** `TP2/`
+- **Contenu :** Analyse Biais/Variance, Régularisation, Optimiseurs, Batch Norm.
+- **Fichiers clés :** `tp2_ex1_bias_variance.py`, `tp2_ex4_batchnorm.py`.
 
 ---
 
-## 📂 Structure du projet
+## 🚀 Installation Globale
 
-- `train_model.py` : Script d’entraînement du modèle (Keras + MLflow).
-- `app.py` : API Flask pour servir le modèle entraîné.
-- `Dockerfile` : Fichier de configuration pour la conteneurisation de l’application.
-- `requirements.txt` : Liste des dépendances Python nécessaires au projet.
-- `mlruns/` : Répertoire contenant les logs, métriques et artefacts générés par MLflow.
-- `test_tp1.py` : Script de test pour valider le bon fonctionnement de l’API Docker.
+1. **Cloner le dépôt :**
+   ```bash
+   git clone https://github.com/krostemgoua/tp_deep_learning_enspy.git
+   cd tp_deep_learning_enspy
 
----
+1. **Activer l'environnement virtuel :**
 
-## 🚀 Installation et Exécution (Local)
-
-### 1️⃣ Cloner le dépôt
-```bash
-git clone https://github.com/krostemgoua/tp_deep_learning_enspy.git
-cd tp_deep_learning_enspy
-
-### 1️2️⃣ Créer un environnement virtuel et installer les dépendances
 python3 -m venv venv
 source venv/bin/activate
-pip install -r requirements.txt
+# Installer les dépendances (communes aux TPs)
+pip install -r TP1/requirements.txt
 
 
-### 3️⃣  Entraîner le modèle
-python train_model.py
 
+🐳 Exécution du TP1 (Docker)
+Pour lancer l'API du TP1, il faut se placer dans le dossier correspondant :
 
-🐳 Utilisation avec Docker (Recommandé)
-
-### 1️⃣  docker build -t mnist-api .
+cd TP1
 docker build -t mnist-api .
-
-
-### 2️⃣  Lancer le conteneur
 docker run -p 5000:5000 mnist-api
 
-
-### 3️⃣  Accéder à l’API 
-Via navigateur : http://localhost:5000
-
-Via script de test : python test_tp1.py
+Une fois lancé, tester avec le script fourni : python test_tp1.py
 
 
-📊 Suivi des Expériences avec MLflow
+📈 Exécution du TP2 (Optimisation)
+Pour lancer les scripts d'analyse du TP2, entrer dans le dossier :
+
+cd TP2
+# Exemple : Lancer l'exercice sur la Batch Normalization
+python tp2_ex4_batchnorm.py
+
+📊 Suivi MLflow
+Pour visualiser les métriques d'entraînement (depuis la racine) :
+
 mlflow ui
 
-Puis ouvrir dans le navigateur :http://localhost:5000
+4.  Sauvegarde (`Ctrl+O`, `Entrée`) et quitte (`Ctrl+X`).
 
-📌 Validation et Soumission du TP1
-`Pour visualiser les métriques, paramètres et artefacts d’entraînement :`
-Une fois le fichier README.md enregistré, exécutez les commandes suivantes pour valider le TP1 sur GitHub :
+---
 
-git add README.md
-git commit -m "Ajout du README complet"
-git push origin main
+### ÉTAPE 2 : Envoi sur GitHub (Push)
+
+C'est l'étape cruciale. Comme tu as déplacé des fichiers (de la racine vers `TP1/`), Git doit comprendre que ce sont des déplacements et non des suppressions.
+
+Lance ces commandes dans l'ordre :
+
+1.  **Ajouter tous les changements (déplacements + nouveau README) :**
+    ```bash
+    git add .
+    ```
+
+2.  **Vérifier l'état (Optionnel mais recommandé) :**
+    ```bash
+    git status
+    ```
+    *Tu devrais voir beaucoup de lignes vertes indiquant "renamed: ... -> TP1/..." ou "new file: TP2/..."*
+
+3.  **Créer le commit (Le point de sauvegarde) :**
+    ```bash
+    git commit -m "Restructuration du projet : Dossiers TP1 et TP2 distincts + MAJ Readme"
+    ```
+
+4.  **Envoyer vers GitHub :**
+    ```bash
+    git push origin main
+    ```
+
+
